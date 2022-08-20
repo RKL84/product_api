@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BigPurpleBank.Product.API.Infrastructure.Exceptions
+﻿namespace BigPurpleBank.Product.API.Infrastructure.Exceptions
 {
     /// <summary>
     /// Exception type for app exceptions

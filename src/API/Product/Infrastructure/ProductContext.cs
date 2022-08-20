@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BigPurpleBank.Product.API.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using BigPurpleBank.Product.API.Model;
 
 namespace BigPurpleBank.Product.API.Controllers.Infrastructure
 {
