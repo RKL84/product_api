@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webstatus-cm
+  labels:
+    app: bigPurple
+    service: webstatus
+data:
+  ASPNETCORE_ENVIRONMENT: Development
+  ASPNETCORE_URLS: http://0.0.0.0:80
+  HealthChecksUI__HealthChecks__4__Uri: http://product-api/hc
+  OrchestratorType: K8S
+  PATH_BASE: /webstatus
