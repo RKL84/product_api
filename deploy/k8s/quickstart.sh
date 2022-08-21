@@ -66,8 +66,8 @@ export BIGPURPLE_QUICKSTART=true
 
 eval $(cat ../../create-aks-exports.txt)
 
-. <(cat ./deploy-application.sh)
-
 . <(cat ./create-acr.sh)
+
+# . <(cat ./deploy-application.sh)
 
 cat ../../deployment-urls.txt
