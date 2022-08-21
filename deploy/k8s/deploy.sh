@@ -69,6 +69,6 @@ eval $(cat ../../create-aks-exports.txt)
 
 . <(cat ./create-acr.sh)
 
-# . <(cat ./deploy-application.sh)
+. <(cat ./deploy-application.sh)
 
 cat ../../deployment-urls.txt
