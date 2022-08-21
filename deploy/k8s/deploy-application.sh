@@ -49,9 +49,9 @@ while [ "$1" != "" ]; do
     shift
 done
 
-appPrefix="bigpurplelearn"
+appPrefix="bigpurplems"
 chartsFolder="./helm-simple"
-defaultRegistry="bigpurplelearn"
+defaultRegistry="bigpurplems"
 
 if [ -z "$registry" ]
 then
@@ -142,7 +142,7 @@ for chart in $chartList
 do
     echo
     echo "Installing chart \"$chart\"..."
-    helmCmd="helm install bigpurplelearn-$chart \"$chartsFolder/$chart\" --set registry=$registry --set imagePullPolicy=Always --set useHostName=$useHostName --set host=$hostName --set protocol=$protocol"
+    helmCmd="helm install bigpurplems-$chart \"$chartsFolder/$chart\" --set registry=$registry --set imagePullPolicy=Always --set useHostName=$useHostName --set host=$hostName --set protocol=$protocol"
     echo "${newline} > ${genericCommandStyle}$helmCmd${defaultTextStyle}${newline}"
     eval $helmCmd
 done
@@ -162,8 +162,6 @@ echo "The bigPurple-ms application has been deployed to \"$protocol://$hostName\
 echo "" >> deployment-urls.txt
 echo "You can begin exploring these services (when ready):" >> deployment-urls.txt
 echo "- Centralized logging       : $protocol://$hostName/seq/#/events?autorefresh (See transient failures during startup)" >> deployment-urls.txt
-echo "- General application status: $protocol://$hostName/webstatus/ (See overall service status)" >> deployment-urls.txt
-echo "- Web SPA application       : $protocol://$hostName/" >> deployment-urls.txt
 echo "${newline}" >> deployment-urls.txt
 
 mv deployment-urls.txt ../../

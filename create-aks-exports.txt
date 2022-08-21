@@ -1,5 +1,0 @@
-export BIGPURPLE_RG=bigpurple-ms-rg
-export BIGPURPLE_LOCATION=eastus
-export BIGPURPLE_AKSNAME=bigPurple-ms-aks
-export BIGPURPLE_AKSNODERG=
-export BIGPURPLE_LBIP=20.232.218.233

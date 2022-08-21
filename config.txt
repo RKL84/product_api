@@ -1,8 +1,0 @@
-[37m[1mAKS and ACR Configuration values(B[m[37m
-
-IP_ADDRESS: [37m[1m(B[m[37m
-REGISTRY_LOGIN_SERVER: [37m[1m(B[m[37m
-REGISTRY_PASSWORD: [37m[1m(B[m[37m
-REGISTRY_USERNAME: [37m[1m(B[m[37m
-
-

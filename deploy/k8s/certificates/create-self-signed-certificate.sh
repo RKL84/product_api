@@ -29,7 +29,7 @@ openssl req \
 -nodes \
 -keyout self-signed.key \
 -out self-signed.cert.pem \
--subj '/CN=bigpurplems.development/O=eShop Learn (Development) - Self-signed' \
+-subj '/CN=bigpurplems.development/O=BigPurple MS (Development) - Self-signed' \
 -extensions san \
 -config <( \
   echo "[req]"; \

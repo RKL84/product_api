@@ -11,7 +11,7 @@ defaultRg="bigpurple-ms-rg"
 bigPurpleSubs=${BIGPURPLE_SUBS}
 bigPurpleRg=${BIGPURPLE_RG}
 bigPurpleLocation=${BIGPURPLE_LOCATION}
-bigPurpleRegistry=bigPurple
+bigPurpleRegistry=bigpurplems
 
 while [ "$1" != "" ]; do
     case $1 in

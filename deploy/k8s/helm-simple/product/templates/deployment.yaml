@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: product-api
-          image: {{ .Values.registry }}/product.api:linux-net6-coupon
+          image: {{ .Values.registry }}/product.api:linux-net6-product
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           ports:
             - containerPort: 80

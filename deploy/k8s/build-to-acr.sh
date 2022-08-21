@@ -57,7 +57,7 @@ do
 
     echo
     echo "Building image \"$image\" for service \"$service\" with \"$dockerfile.acr\"..."
-    serviceCmd="az acr build -r $BIGPURPLE_ACRNAME -t $BIGPURPLE_REGISTRY/$image:linux-net6-coupon -f $dockerfile.acr ."
+    serviceCmd="az acr build -r $BIGPURPLE_ACRNAME -t $BIGPURPLE_REGISTRY/$image:linux-net6-product -f $dockerfile.acr ."
     echo "${newline} > ${azCliCommandStyle}$serviceCmd${defaultTextStyle}${newline}"
     eval $serviceCmd
 done
