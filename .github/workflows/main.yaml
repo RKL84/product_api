@@ -3,7 +3,7 @@ name: BigPurple MS
 on:
   push:
     paths:
-    - 'src/API/Product/**'
+    - 'src/API/**'
     branches: [ main ]
 
 jobs:
