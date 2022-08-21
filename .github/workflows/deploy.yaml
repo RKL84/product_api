@@ -1,6 +1,7 @@
 name: BigPurple MS - DEPLOY
 
 on:
+  workflow_dispatch:
   push:
     paths:
     - 'deploy/k8s/helm-simple/product/*'
@@ -18,8 +19,8 @@ jobs:
     - name: Azure Kubernetes set context
       uses: Azure/aks-set-context@v2
       with:
-        resource-group: 'eshop-learn-rg'
-        cluster-name: 'eshop-learn-aks'
+        resource-group: 'bigpurple-ms-rg'
+        cluster-name: 'bigpurple-ms-aks'
 
     - name: Get code from the repository
       uses: actions/checkout@v3

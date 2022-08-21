@@ -1,6 +1,7 @@
 name: BigPurple MS - BUILD
 
 on:
+  workflow_dispatch:
   push:
     paths:
     - 'src/API/**'
