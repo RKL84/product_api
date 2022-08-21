@@ -3,16 +3,16 @@
 # This certificate includes the Subject Alternate Name (SAN) that's required by Chrome.
 
 echo
-echo "host: $ESHOP_HOST (IP: $ESHOP_LBIP)"
+echo "host: $BIGPURPLE_HOST (IP: $BIGPURPLE_LBIP)"
 
-if [ "$ESHOP_HOST" != "" ] && [ "$ESHOP_HOST" != "$ESHOP_LBIP" ]
+if [ "$BIGPURPLE_HOST" != "" ] && [ "$BIGPURPLE_HOST" != "$BIGPURPLE_LBIP" ]
 then
-  hostEntry=",DNS:$ESHOP_HOST" 
+  hostEntry=",DNS:$BIGPURPLE_HOST" 
 fi
 
 if [ -f self-signed.cert.txt ]
 then
-    if grep -q "DNS:$ESHOP_HOST" self-signed.cert.txt 
+    if grep -q "DNS:$BIGPURPLE_HOST" self-signed.cert.txt 
     then
         exit 0
     fi
