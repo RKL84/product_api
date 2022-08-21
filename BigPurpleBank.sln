@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "src\API\Product\Product.API.csproj", "{49426153-6025-4B74-85AD-E73E51CA5C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "src\API\Product\Product.API\Product.API.csproj", "{49426153-6025-4B74-85AD-E73E51CA5C6A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{688EF0B2-DCC0-4FA9-A008-D5B60FAD5609}"
 EndProject

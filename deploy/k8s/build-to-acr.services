@@ -1,2 +1,1 @@
 product-api:product.api>src/API/Product/Product.API/Dockerfile
-webstatus:webstatus>src/Web/WebStatus/Dockerfile
