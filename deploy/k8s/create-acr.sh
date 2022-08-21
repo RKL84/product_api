@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Color theming
-if [ -f ../../../../infrastructure/scripts/theme.sh ]
+if [ -f ./theme.sh ]
 then
-  . <(cat ../../../../infrastructure/scripts/theme.sh)
+  . <(cat ./theme.sh)
 fi
 
 if [ -f ../../create-aks-exports.txt ]
@@ -140,3 +140,9 @@ echo "Created Azure Container Registry \"$bigPurpleAcrName\" in resource group \
 
 mv -f create-acr-exports.txt ../../
 mv -f create-idtag-exports.txt ../../
+
+echo "REGISTRY_LOGIN_SERVER: ${headingStyle}$eshopRegistry${defaultTextStyle}" >> ../../config.txt
+echo "REGISTRY_PASSWORD: ${headingStyle}$eshopAcrPassword${defaultTextStyle}" >> ../../config.txt
+echo "REGISTRY_USERNAME: ${headingStyle}$eshopAcrUser${defaultTextStyle}" >> ../../config.txt
+echo "${newline}" >> ../../config.txt
+

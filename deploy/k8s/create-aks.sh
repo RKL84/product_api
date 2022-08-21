@@ -2,9 +2,9 @@
 vmSize=Standard_D2_v5
 
 # Color theming
-if [ -f ../../../../infrastructure/scripts/theme.sh ]
+if [ -f ./theme.sh ]
 then
-  . <(cat ../../../../infrastructure/scripts/theme.sh)
+  . <(cat ./theme.sh)
 fi
 
 bigPurpleSubs=${BIGPURPLE_SUBS}
@@ -152,3 +152,6 @@ kubectl wait --namespace ingress-nginx \
     echo export BIGPURPLE_LBIP=$bigPurpleLbIp >> create-aks-exports.txt
 
     mv -f create-aks-exports.txt ../../
+
+echo "${headingStyle}AKS and ACR Configuration values${defaultTextStyle}${newline}" > ../../config.txt
+echo "IP_ADDRESS: ${headingStyle}$eshopLbIp${defaultTextStyle}" >> ../../config.txt

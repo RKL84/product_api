@@ -3,10 +3,10 @@ defaultLocation="eastus"
 defaultRg="bigpurple-ms-rg"
 
 # Color theming
-. <(cat ../../../../infrastructure/scripts/theme.sh)
+. <(cat ./theme.sh)
 
 # AZ CLI check
-. <(cat ../../../../infrastructure/scripts/azure-cli-check.sh)
+. <(cat ./azure-cli-check.sh)
 
 bigPurpleSubs=${BIGPURPLE_SUBS}
 bigPurpleRg=${BIGPURPLE_RG}
