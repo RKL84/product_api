@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace BigPurpleBank.Product.API
 {
@@ -15,11 +17,12 @@ namespace BigPurpleBank.Product.API
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddCustomMVC(Configuration)
-                 .AddCustomDbContext(Configuration)
+                .AddCustomDbContext(Configuration)
                 .AddCustomOptions(Configuration)
                 .AddIntegrationServices(Configuration)
                 .AddEventBus(Configuration)
-                .AddSwagger(Configuration);
+                .AddSwagger(Configuration)
+                .AddCustomHealthCheck(Configuration);
             var container = new ContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
@@ -49,6 +52,15 @@ namespace BigPurpleBank.Product.API
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
             });
 
             ConfigureEventBus(app);

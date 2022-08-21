@@ -10,6 +10,7 @@ using BigPurpleBank.Product.API.Infrastructure.Filters;
 using BigPurpleBank.Product.API.IntegrationEvents;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
@@ -183,6 +184,13 @@ namespace BigPurpleBank.Product.API
                 });
             }
 
+            return services;
+        }
+
+        public static IServiceCollection AddCustomHealthCheck(this IServiceCollection services, IConfiguration configuration)
+        {
+            var hcBuilder = services.AddHealthChecks();
+            hcBuilder.AddCheck("self", () => HealthCheckResult.Healthy());
             return services;
         }
     }
