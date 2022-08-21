@@ -82,8 +82,8 @@ then
     fi
 
     echo
-    echo "Creating Azure Container Registry \"bigPurplelearn$bigPurpleIdTag\" in resource group \"$bigPurpleRg\"..."
-    acrCommand="az acr create --name bigPurplelearn$bigPurpleIdTag -g $bigPurpleRg -l $bigPurpleLocation -o json --sku basic --admin-enabled --query \"name\" -otsv"
+    echo "Creating Azure Container Registry \"bigpurplelearn$bigPurpleIdTag\" in resource group \"$bigPurpleRg\"..."
+    acrCommand="az acr create --name bigpurplelearn$bigPurpleIdTag -g $bigPurpleRg -l $bigPurpleLocation -o json --sku basic --admin-enabled --query \"name\" -otsv"
     echo "${newline} > ${azCliCommandStyle}$acrCommand${defaultTextStyle}${newline}"
     bigPurpleAcrName=`$acrCommand`
 

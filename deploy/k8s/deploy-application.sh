@@ -49,9 +49,9 @@ while [ "$1" != "" ]; do
     shift
 done
 
-appPrefix="bigPurplelearn"
+appPrefix="bigpurplelearn"
 chartsFolder="./helm-simple"
-defaultRegistry="bigPurplelearn"
+defaultRegistry="bigpurplelearn"
 
 if [ -z "$registry" ]
 then
@@ -142,7 +142,7 @@ for chart in $chartList
 do
     echo
     echo "Installing chart \"$chart\"..."
-    helmCmd="helm install bigPurplelearn-$chart \"$chartsFolder/$chart\" --set registry=$registry --set imagePullPolicy=Always --set useHostName=$useHostName --set host=$hostName --set protocol=$protocol"
+    helmCmd="helm install bigpurplelearn-$chart \"$chartsFolder/$chart\" --set registry=$registry --set imagePullPolicy=Always --set useHostName=$useHostName --set host=$hostName --set protocol=$protocol"
     echo "${newline} > ${genericCommandStyle}$helmCmd${defaultTextStyle}${newline}"
     eval $helmCmd
 done
