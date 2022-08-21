@@ -1,5 +1,5 @@
 #!/bin/bash
-vmSize=Standard_D2_v5
+vmSize=Standard_D2_v3
 
 # Color theming
 if [ -f ./theme.sh ]
@@ -154,4 +154,4 @@ kubectl wait --namespace ingress-nginx \
     mv -f create-aks-exports.txt ../../
 
 echo "${headingStyle}AKS and ACR Configuration values${defaultTextStyle}${newline}" > ../../config.txt
-echo "IP_ADDRESS: ${headingStyle}$eshopLbIp${defaultTextStyle}" >> ../../config.txt
+echo "IP_ADDRESS: ${headingStyle}$bigPurpleLbIp${defaultTextStyle}" >> ../../config.txt

@@ -1,5 +1,5 @@
 #!/bin/bash
-defaultLocation="eastus"
+defaultLocation="australiaeast"
 defaultRg="bigpurple-ms-rg"
 
 # Color theming
@@ -60,6 +60,7 @@ export BIGPURPLE_RG=$bigPurpleRg
 export BIGPURPLE_LOCATION=$bigPurpleLocation
 export BIGPURPLE_REGISTRY=$bigPurpleRegistry
 export BIGPURPLE_QUICKSTART=true
+export MSYS_NO_PATHCONV=1
 
 # AKS Cluster creation
 . <(cat ./create-aks.sh)

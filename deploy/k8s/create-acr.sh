@@ -19,6 +19,7 @@ fi
 bigPurpleRg=${BIGPURPLE_RG}
 bigPurpleLocation=${BIGPURPLE_LOCATION}
 bigPurpleIdTag=${BIGPURPLE_IDTAG}
+export MSYS_NO_PATHCONV=1
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -141,8 +142,8 @@ echo "Created Azure Container Registry \"$bigPurpleAcrName\" in resource group \
 mv -f create-acr-exports.txt ../../
 mv -f create-idtag-exports.txt ../../
 
-echo "REGISTRY_LOGIN_SERVER: ${headingStyle}$eshopRegistry${defaultTextStyle}" >> ../../config.txt
-echo "REGISTRY_PASSWORD: ${headingStyle}$eshopAcrPassword${defaultTextStyle}" >> ../../config.txt
-echo "REGISTRY_USERNAME: ${headingStyle}$eshopAcrUser${defaultTextStyle}" >> ../../config.txt
+echo "REGISTRY_LOGIN_SERVER: ${headingStyle}$bigPurpleRegistry${defaultTextStyle}" >> ../../config.txt
+echo "REGISTRY_PASSWORD: ${headingStyle}$bigPurpleAcrPassword${defaultTextStyle}" >> ../../config.txt
+echo "REGISTRY_USERNAME: ${headingStyle}$bigPurpleAcrUser${defaultTextStyle}" >> ../../config.txt
 echo "${newline}" >> ../../config.txt
 
