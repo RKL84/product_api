@@ -68,21 +68,22 @@ namespace BigPurpleBank.Product.API.Controllers
         }
 
 
-        ////POST api/v1/[controller]/items
-        //[Route("items")]
-        //[HttpPost]
-        //[ProducesResponseType((int)HttpStatusCode.Created)]
-        //public async Task<ActionResult> CreateProductAsync([FromBody] ProductItem product)
-        //{
-        //    var item = new ProductItem
-        //    {
-        //    };
+        //POST api/v1/[controller]/items
+        [Route("items")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<ActionResult> CreateProductAsync([FromBody] ProductItem product)
+        {
+            var item = new ProductItem();
+            item.Description = product.Description;
+            item.Name = product.Name;
+            item.Price = product.Price;
 
-        //    _productContext.ProductItem.Add(item);
-        //    var productAddedEvent = new ProductAddedIntegrationEvent(product.Name);
-        //    await _productIntegrationEventService.SaveEventAndProductContextChangesAsync(productAddedEvent);
-        //    await _productIntegrationEventService.PublishThroughEventBusAsync(productAddedEvent);
-        //    return CreatedAtAction(nameof(ItemByIdAsync), new { id = item.Id }, null);
-        //}
+            _productContext.ProductItem.Add(item);
+            var productAddedEvent = new ProductAddedIntegrationEvent(product.Name);
+            await _productIntegrationEventService.SaveEventAndProductContextChangesAsync(productAddedEvent);
+            await _productIntegrationEventService.PublishThroughEventBusAsync(productAddedEvent);
+            return CreatedAtAction(nameof(ItemByIdAsync), new { id = item.Id }, null);
+        }
     }
 }
