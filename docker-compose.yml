@@ -10,8 +10,20 @@ services:
       - "5901:80"
     depends_on:
         - sqldata
+        - rabbitmq
   sqldata:
     image: mcr.microsoft.com/mssql/server:2017-latest
     environment:
         SA_PASSWORD: "Pass@word"
         ACCEPT_EULA: "Y"
+  rabbitmq: # login guest:guest
+    image: rabbitmq:3-management-alpine
+    hostname: "rabbitmq"
+    labels:
+      NAME: "rabbitmq"
+    ports:
+    - "4369:4369"
+    - "5671:5671"
+    - "5672:5672"
+    - "25672:25672"
+    - "15671:15671"

@@ -19,14 +19,12 @@ namespace BigPurpleBank.Product.API.Controllers
         private readonly IProductIntegrationEventService _productIntegrationEventService;
 
         public ProductController(ProductContext context,
-            IOptionsSnapshot<ProductSettings> settings)
-        //public ProductController(ProductContext context,
-        //    IOptionsSnapshot<ProductSettings> settings,
-        //    IProductIntegrationEventService productIntegrationEventService)
+            IOptionsSnapshot<ProductSettings> settings,
+            IProductIntegrationEventService productIntegrationEventService)
         {
             _productContext = context ?? throw new ArgumentNullException(nameof(context));
-            //_productIntegrationEventService = productIntegrationEventService ??
-            //    throw new ArgumentNullException(nameof(productIntegrationEventService));
+            _productIntegrationEventService = productIntegrationEventService ??
+                throw new ArgumentNullException(nameof(productIntegrationEventService));
             _settings = settings.Value;
             context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
