@@ -11,6 +11,8 @@ data:
   AzureStorageEnabled: "False"
   ConnectionString: Server=sqldata;Database=BigPurpleBank.Product.API.ProductDb;User Id=sa;Password=Pass@word
   EventBusConnection: rabbitmq
+  EventBusUserName: guest
+  EventBusPassword: guest
   GRPC_PORT: "81"
   OrchestratorType: K8S
   PATH_BASE: /product-api
