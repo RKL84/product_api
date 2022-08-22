@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  product.api:
+    image: ${DOCKER_REGISTRY-}productapi
+    build:
+      context: src/API/Product/Product.API/
+      dockerfile: Dockerfile
+    ports: 
+      - "5901:80"

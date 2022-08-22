@@ -20,7 +20,7 @@ using System.Reflection;
 
 namespace BigPurpleBank.Product.API
 {
-    public static class CustomExtensionMethods
+    public static class StartupExtensions
     {
         public static IServiceCollection AddCustomOptions
             (this IServiceCollection services, IConfiguration configuration)

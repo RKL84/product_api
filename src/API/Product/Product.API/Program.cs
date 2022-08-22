@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using BigPurpleBank.Common.IntegrationEventLogEF;
+using BigPurpleBank.Product.API.Controllers.Infrastructure;
+using BigPurpleBank.Product.API.Infrastructure;
+using Catalog.API.Extensions;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.Options;
 using Serilog;
 using System.Net;
 
@@ -20,6 +25,16 @@ namespace BigPurpleBank.Product.API
             {
                 Log.Information("Configuring web host ({ApplicationContext})...", AppName);
                 var host = CreateHostBuilder(configuration, args);
+                Log.Information("Applying migrations ({ApplicationContext})...", AppName);
+                _ = host.MigrateDbContext<ProductContext>((context, services) =>
+                  {
+                      var env = services.GetService<IWebHostEnvironment>();
+                      var settings = services.GetService<IOptions<ProductSettings>>();
+                      var logger = services.GetService<ILogger<ProductContextSeed>>();
+                      new ProductContextSeed().SeedAsync(context, env, settings, logger).Wait();
+                  })
+                .MigrateDbContext<IntegrationEventLogContext>((_, __) => { });
+
                 host.Run();
                 return 0;
             }
@@ -38,14 +53,14 @@ namespace BigPurpleBank.Product.API
             WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(configuration)
                 .CaptureStartupErrors(false)
-                .ConfigureKestrel(options =>
-                {
-                    var port = GetDefinedPorts(configuration);
-                    options.Listen(IPAddress.Any, port, listenOptions =>
-                    {
-                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                    });
-                })
+                //.ConfigureKestrel(options =>
+                //{
+                //    var port = GetDefinedPorts(configuration);
+                //    options.Listen(IPAddress.Any, port, listenOptions =>
+                //    {
+                //        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                //    });
+                //})
                 .UseStartup<Startup>()
                 .UseSerilog()
                 .Build();
