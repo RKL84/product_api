@@ -17,13 +17,10 @@ namespace Catalog.API.Extensions
             (this IWebHost host, Action<TContext, IServiceProvider> seeder) where TContext : DbContext
         {
             var underK8s = host.IsInKubernetes();
-
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
                 var logger = services.GetRequiredService<ILogger<TContext>>();
-
                 var context = services.GetService<TContext>();
 
                 try
@@ -70,8 +67,8 @@ namespace Catalog.API.Extensions
             (Action<TContext, IServiceProvider> seeder, TContext context, IServiceProvider services)
             where TContext : DbContext
         {
-            //context.Database.Migrate();
-            //seeder(context, services);
+            context.Database.Migrate();
+            seeder(context, services);
         }
     }
 }

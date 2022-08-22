@@ -19,12 +19,14 @@ namespace BigPurpleBank.Product.API.Controllers
         private readonly IProductIntegrationEventService _productIntegrationEventService;
 
         public ProductController(ProductContext context,
-            IOptionsSnapshot<ProductSettings> settings,
-            IProductIntegrationEventService productIntegrationEventService)
+            IOptionsSnapshot<ProductSettings> settings)
+        //public ProductController(ProductContext context,
+        //    IOptionsSnapshot<ProductSettings> settings,
+        //    IProductIntegrationEventService productIntegrationEventService)
         {
             _productContext = context ?? throw new ArgumentNullException(nameof(context));
-            _productIntegrationEventService = productIntegrationEventService ??
-                throw new ArgumentNullException(nameof(productIntegrationEventService));
+            //_productIntegrationEventService = productIntegrationEventService ??
+            //    throw new ArgumentNullException(nameof(productIntegrationEventService));
             _settings = settings.Value;
             context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
@@ -38,10 +40,10 @@ namespace BigPurpleBank.Product.API.Controllers
         public async Task<IActionResult> ItemsAsync
             ([FromQuery] int pageSize = 10, [FromQuery] int pageIndex = 0)
         {
-            var totalItems = await _productContext.ProductItems
+            var totalItems = await _productContext.ProductItem
                 .LongCountAsync();
 
-            var itemsOnPage = await _productContext.ProductItems
+            var itemsOnPage = await _productContext.ProductItem
                 .OrderBy(c => c.Name)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
@@ -61,28 +63,28 @@ namespace BigPurpleBank.Product.API.Controllers
             if (id <= 0)
                 return BadRequest();
 
-            var item = await _productContext.ProductItems.SingleOrDefaultAsync(ci => ci.Id == id);
+            var item = await _productContext.ProductItem.SingleOrDefaultAsync(ci => ci.Id == id);
             if (item != null)
                 return item;
             return NotFound();
         }
 
 
-        //POST api/v1/[controller]/items
-        [Route("items")]
-        [HttpPost]
-        [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<ActionResult> CreateProductAsync([FromBody] ProductItem product)
-        {
-            var item = new ProductItem
-            {
-            };
+        ////POST api/v1/[controller]/items
+        //[Route("items")]
+        //[HttpPost]
+        //[ProducesResponseType((int)HttpStatusCode.Created)]
+        //public async Task<ActionResult> CreateProductAsync([FromBody] ProductItem product)
+        //{
+        //    var item = new ProductItem
+        //    {
+        //    };
 
-            _productContext.ProductItems.Add(item);
-            var productAddedEvent = new ProductAddedIntegrationEvent(product.Name);
-            await _productIntegrationEventService.SaveEventAndProductContextChangesAsync(productAddedEvent);
-            await _productIntegrationEventService.PublishThroughEventBusAsync(productAddedEvent);
-            return CreatedAtAction(nameof(ItemByIdAsync), new { id = item.Id }, null);
-        }
+        //    _productContext.ProductItem.Add(item);
+        //    var productAddedEvent = new ProductAddedIntegrationEvent(product.Name);
+        //    await _productIntegrationEventService.SaveEventAndProductContextChangesAsync(productAddedEvent);
+        //    await _productIntegrationEventService.PublishThroughEventBusAsync(productAddedEvent);
+        //    return CreatedAtAction(nameof(ItemByIdAsync), new { id = item.Id }, null);
+        //}
     }
 }

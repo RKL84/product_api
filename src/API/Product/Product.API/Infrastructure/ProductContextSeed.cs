@@ -16,9 +16,9 @@ namespace BigPurpleBank.Product.API.Infrastructure
             var policy = CreatePolicy(logger, nameof(ProductContextSeed));
             await policy.ExecuteAsync(async () =>
             {
-                if (!context.ProductItems.Any())
+                if (!context.ProductItem.Any())
                 {
-                    await context.ProductItems.AddRangeAsync(GetPreconfiguredItems());
+                    await context.ProductItem.AddRangeAsync(GetPreconfiguredItems());
                     await context.SaveChangesAsync();
                 }
             });
@@ -27,20 +27,20 @@ namespace BigPurpleBank.Product.API.Infrastructure
         {
             return new List<ProductItem>()
             {
-                new ProductItem { Id = 2,  Description = ".NET Bot Black Hoodie", Name = ".NET Bot Black Hoodie", Price = 19.5M  },
-                new ProductItem { Id = 1,  Description = ".NET Black & White Mug", Name = ".NET Black & White Mug", Price= 8.50M },
-                new ProductItem { Id = 2,  Description = "Prism White T-Shirt", Name = "Prism White T-Shirt", Price = 12  },
-                new ProductItem { Id = 2,  Description = ".NET Foundation T-shirt", Name = ".NET Foundation T-shirt", Price = 12  },
-                new ProductItem { Id = 3,  Description = "Roslyn Red Pin", Name = "Roslyn Red Pin", Price = 8.5M },
-                new ProductItem { Id = 2,   Description = ".NET Blue Hoodie", Name = ".NET Blue Hoodie", Price = 12  },
-                new ProductItem { Id = 2,  Description = "Roslyn Red T-Shirt", Name = "Roslyn Red T-Shirt", Price =  11},
-                new ProductItem { Id = 2, Description = "Kudu Purple Hoodie", Name = "Kudu Purple Hoodie", Price = 8.5M },
-                new ProductItem { Id = 1,   Description = "Cup<T> White Mug", Name = "Cup<T> White Mug", Price = 12 },
-                new ProductItem { Id = 3,   Description = ".NET Foundation Pin", Name = ".NET Foundation Pin", Price = 12 },
-                new ProductItem { Id = 3,  Description = "Cup<T> Pin", Name = "Cup<T> Pin", Price = 8.5M },
-                new ProductItem { Id = 2,  Description = "Cup<T> White TShirt", Name = "Cup<T> White TShirt", Price = 12 },
-                new ProductItem { Id = 1,  Description = "Modern .NET Mug", Name = "Modern .NET Mug", Price= 8.50M },
-                new ProductItem { Id = 1,  Description = "Modern Cup<T> Mug", Name = "Modern Cup<T> Mug", Price = 12 },
+                new ProductItem {   Description = ".NET Bot Black Hoodie", Name = ".NET Bot Black Hoodie", Price = 19.5M  },
+                new ProductItem {   Description = ".NET Black & White Mug", Name = ".NET Black & White Mug", Price= 8.50M },
+                new ProductItem {    Description = "Prism White T-Shirt", Name = "Prism White T-Shirt", Price = 12  },
+                new ProductItem {  Description = ".NET Foundation T-shirt", Name = ".NET Foundation T-shirt", Price = 12  },
+                new ProductItem {   Description = "Roslyn Red Pin", Name = "Roslyn Red Pin", Price = 8.5M },
+                new ProductItem {     Description = ".NET Blue Hoodie", Name = ".NET Blue Hoodie", Price = 12  },
+                new ProductItem {  Description = "Roslyn Red T-Shirt", Name = "Roslyn Red T-Shirt", Price =  11},
+                new ProductItem { Description = "Kudu Purple Hoodie", Name = "Kudu Purple Hoodie", Price = 8.5M },
+                new ProductItem {    Description = "Cup<T> White Mug", Name = "Cup<T> White Mug", Price = 12 },
+                new ProductItem {    Description = ".NET Foundation Pin", Name = ".NET Foundation Pin", Price = 12 },
+                new ProductItem {   Description = "Cup<T> Pin", Name = "Cup<T> Pin", Price = 8.5M },
+                new ProductItem {    Description = "Cup<T> White TShirt", Name = "Cup<T> White TShirt", Price = 12 },
+                new ProductItem {  Description = "Modern .NET Mug", Name = "Modern .NET Mug", Price= 8.50M },
+                new ProductItem {    Description = "Modern Cup<T> Mug", Name = "Modern Cup<T> Mug", Price = 12 },
             };
         }
 

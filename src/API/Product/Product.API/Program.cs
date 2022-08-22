@@ -3,10 +3,8 @@ using BigPurpleBank.Product.API.Controllers.Infrastructure;
 using BigPurpleBank.Product.API.Infrastructure;
 using Catalog.API.Extensions;
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Options;
 using Serilog;
-using System.Net;
 
 namespace BigPurpleBank.Product.API
 {
@@ -53,14 +51,6 @@ namespace BigPurpleBank.Product.API
             WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(configuration)
                 .CaptureStartupErrors(false)
-                //.ConfigureKestrel(options =>
-                //{
-                //    var port = GetDefinedPorts(configuration);
-                //    options.Listen(IPAddress.Any, port, listenOptions =>
-                //    {
-                //        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                //    });
-                //})
                 .UseStartup<Startup>()
                 .UseSerilog()
                 .Build();
@@ -78,11 +68,6 @@ namespace BigPurpleBank.Product.API
                 //.WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://logstash:8080" : logstashUrl)
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
-        }
-
-        private static int GetDefinedPorts(IConfiguration config)
-        {
-            return config.GetValue("PORT", 80);
         }
 
         private static IConfiguration GetConfiguration()

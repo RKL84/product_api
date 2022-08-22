@@ -9,13 +9,10 @@ namespace BigPurpleBank.Product.API.Controllers.Infrastructure
         public ProductContext(DbContextOptions<ProductContext> options) : base(options)
         {
         }
-        public DbSet<ProductItem> ProductItems { get; set; }
+        public DbSet<ProductItem> ProductItem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.ApplyConfiguration(new ProductBrandEntityTypeConfiguration());
-            //builder.ApplyConfiguration(new ProductTypeEntityTypeConfiguration());
-            //builder.ApplyConfiguration(new ProductItemEntityTypeConfiguration());
         }
     }
 
