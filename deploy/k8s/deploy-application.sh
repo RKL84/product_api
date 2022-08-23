@@ -160,8 +160,5 @@ kubectl get pods
 
 echo "The bigPurple-ms application has been deployed to \"$protocol://$hostName\" (IP: $BIGPURPLE_LBIP)." > deployment-urls.txt
 echo "" >> deployment-urls.txt
-echo "You can begin exploring these services (when ready):" >> deployment-urls.txt
-echo "- Centralized logging       : $protocol://$hostName/seq/#/events?autorefresh (See transient failures during startup)" >> deployment-urls.txt
-echo "${newline}" >> deployment-urls.txt
 
 mv deployment-urls.txt ../../
