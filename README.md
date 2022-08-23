@@ -2,6 +2,9 @@
 
 ## Architecture Overview
 
+![image](https://user-images.githubusercontent.com/13943254/186095166-546b6914-75bc-4758-96cb-9bf4fa7b5853.png)
+
+
 The **Product API** service is a **.NET Core API** which is hosted on Azure Kubernetes. The product data is stored in the sqldata container.  The sqldata container is good for local development. However, Azure managed services should be used when the service is deployed in Azure. 
 The Product API exposes the following endpoints - 
 
