@@ -1,5 +1,20 @@
 # Product API
 
+## Architecture Overview
+
+The **Product API** service is a **.NET Core API** which is hosted on Azure Kubernetes. The product data is stored in the sqldata container.  The sqldata container is good for local development. However, Azure managed services should be used when the service is deployed in Azure. 
+The Product API exposes the following endpoints - 
+
+```
+GET api/v1/product/items
+GET api/v1/product/items/{id}
+POST api/v1/product/items
+```
+
+When a new product is created, a message is added to the Event bus. The event bus is used for asynchronous messaging and event-driven communication.
+For local deployment, RabbitMQ container instance is used. In production deployment, Azure Service Bus or other managed service is more appropriate. 
+
+
 ## Steps to run on local machine using **Docker Compose**
 
 1. Install [docker tools](https://docs.docker.com/docker-for-windows/install/)
@@ -73,6 +88,12 @@ curl --location --request POST 'http://<IPADDRESS>/product-api/api/v1/product/it
   "price": 20
 }'
 ```
+
+10. Run the following command to delete all the resources. 
+```
+cleanup-resource.sh
+```
+
 
 ## Setup CI/CD pipelines using GitHub Actions  
 GitHub Actions is used to build a container image and deploy to Azure Kubernetes Service. The build and deployment job definitions can be found under the following directory **~/.github/workflow**.
