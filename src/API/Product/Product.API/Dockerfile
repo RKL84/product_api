@@ -6,18 +6,24 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/API/Product/Product.API/Product.API.csproj", "src/API/Product/Product.API/"]
-COPY ["src/Common/EventBus/EventBusRabbitMQ/EventBusRabbitMQ.csproj", "src/Common/EventBus/EventBusRabbitMQ/"]
-COPY ["src/Common/EventBus/EventBus/EventBus.csproj", "src/Common/EventBus/EventBus/"]
-COPY ["src/Common/EventBus/IntegrationEventLogEF/IntegrationEventLogEF.csproj", "src/Common/EventBus/IntegrationEventLogEF/"]
-COPY ["src/Common/EventBus/EventBusServiceBus/EventBusServiceBus.csproj", "src/Common/EventBus/EventBusServiceBus/"]
-RUN dotnet restore "src/API/Product/Product.API/Product.API.csproj"
+
+# Create this "restore-solution" section by running ./Create-DockerfileSolutionRestore.ps1, to optimize build cache reuse
+COPY ["Common/EventBus/EventBus/EventBus.csproj", "Common/EventBus/EventBus/"]
+COPY ["Common/EventBus/EventBusRabbitMQ/EventBusRabbitMQ.csproj", "Common/EventBus/EventBusRabbitMQ/"]
+COPY ["Common/EventBus/EventBusServiceBus/EventBusServiceBus.csproj", "Common/EventBus/EventBusServiceBus/"]
+COPY ["Common/EventBus/IntegrationEventLogEF/IntegrationEventLogEF.csproj", "Common/EventBus/IntegrationEventLogEF/"]
+COPY ["API/Product/Product.API/Product.API.csproj", "API/Product/Product.API/"]
+COPY ["./BigPurpleBank.sln", "./"]
+#COPY ["NuGet.config", "./"]
+COPY ["docker-compose.dcproj", "./"]
+RUN dotnet restore "BigPurpleBank.sln"
+
 COPY . .
 WORKDIR "/src/src/API/Product/Product.API"
-RUN dotnet build "Product.API.csproj" -c Release -o /app/build
+#RUN dotnet build "Product.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Product.API.csproj" -c Release -o /app/publish
+RUN dotnet publish --no-restore "Product.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
